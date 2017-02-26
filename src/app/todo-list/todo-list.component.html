@@ -1,0 +1,58 @@
+<div class="container">
+	<div class="text-center">
+		<h1 class="logo">
+			Todo-list
+		</h1>
+		<p>Add, edit, delete and change priority for your todo-list <i class="fa fa-smile-o" aria-hidden="true"></i></p>
+	</div>
+	<div class="input-todo">
+		<div class="input-group">
+			<input type="text" class="form-control" #todo placeholder="What do you want to do?" (keyup.enter)="addTodo(todo)">
+			<div class="input-group-btn">
+				<button class="btn btn-warning" (click)="addTodo(todo)">
+					<i class="fa fa-plus" aria-hidden="true"></i>
+				</button>
+			</div>
+		</div>
+		<div class="validation col-md-12" *ngIf="validation.value">{{validation.message}}</div>
+	</div>
+	<div class="list-group list-group-container">
+		<div class="list-group-item list-group-item-info" *ngFor="let todoItem of todoList; let i = index;">
+			<div class="col-md-9 col-xs-9">
+				<div ngbDropdown class="d-inline-block" *ngIf="!todoItem.edit" placement="top" ngbTooltip="Change priority">
+					<button class="btn btn-outline-success" id="dropdownMenu1" ngbDropdownToggle>{{i+1}}</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<div *ngFor="let todos of todoList; let k = index;">
+							<button class="dropdown-item" (click)="changePriority(k,i)">{{k+1}}</button>
+						</div>
+					</div>
+				</div>
+				<span class="todoItem" *ngIf="!todoItem.edit" [class.done]="todoItem.done">{{todoItem.todo}}</span>
+				<div class="input-group" *ngIf="todoItem.edit">
+					<input type="text" #editOne class="form-control" placeholder="{{todoItem.todo}}" (keyup.esc)="todoItem.edit = !todoItem.edit" (keyup.enter)=" editTodo(i, editOne); todoItem.edit=!todoItem.edit" >
+					<div class="input-group-btn">
+						<button class="btn btn-warning" (click)="editTodo(i, editOne); todoItem.edit = !todoItem.edit">
+							<i class="fa fa-arrow-right" aria-hidden="true"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 col-xs-3">
+				<div class="pull-right">
+					<span *ngIf="todoItem.done" class="badge done-btn" (click)="todoItem.done = !todoItem.done" placement="top" ngbTooltip="Undo">
+						<i class="fa fa-check-square-o" aria-hidden="true"></i>
+					</span>
+					<span *ngIf="!todoItem.done" class="badge done-btn" (click)="todoItem.done = !todoItem.done" placement="top" ngbTooltip="Done">
+						<i class="fa fa-square-o" aria-hidden="true"></i>
+					</span>
+					<span class="badge edit-btn" (click)="todoItem.edit = !todoItem.edit" placement="top" ngbTooltip="Edit">
+						<i class="fa fa-pencil" aria-hidden="true"></i>
+					</span>
+					<ngbd-modal-basic [indexToInput]="i" (indexToOutput)="deleteTodo($event)"></ngbd-modal-basic>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<template ngbModalContainer></template>
+ 

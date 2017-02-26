@@ -1,0 +1,82 @@
+.container {
+  min-height: 100vh;
+  background-color: #3880FB;
+}
+.logo {
+  padding-top: 30px;
+}
+.validation {
+  color: #DFC2C1;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+.list-group-container {
+  padding: 0 50px 80px 50px;
+}
+.input-todo {
+	display: flex;
+	justify-content: center;
+  width: 50%;
+  height: 120px;
+	padding-top: 25px;
+  padding-bottom: 50px;
+  margin: auto;
+  display: block;
+}
+.dropdown-menu {
+  min-width: 50px !important;
+  right: 0px;
+}
+.dropdown-item {
+  padding: 0px 10px;
+  text-align: center;
+}
+.todoItem {
+  padding-left: 20px;
+}
+.badge {
+  padding: 15px;
+  white-space: nowrap;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.badge:hover {
+  cursor: pointer;
+}
+.edit-btn {
+	background-color: #70C1B3;
+  transition: all 1s;
+}
+.edit-btn:hover {
+	background-color: #5C9E93;
+}
+.done-btn {
+  background-color: #247BA0;
+  transition: all 1s;
+}
+.done-btn:hover {
+  background-color: #1E6583;
+}
+.done{
+  text-decoration: line-through;
+  color: #000;
+}
+
+@media (max-width: 500px) {
+  .input-todo {
+    width: 100%;
+  }
+  .list-group-container {
+    padding: 0 0 60px 0;
+  }
+  .badge {
+    padding: 5px;
+  }
+  .todoItem {
+    padding-left: 10px;
+  }
+}
+
+

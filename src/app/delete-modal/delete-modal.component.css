@@ -1,0 +1,26 @@
+.modal-title {
+  color: #000;
+}
+.badge {
+  padding: 15px;
+  white-space: nowrap;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.badge:hover {
+  cursor: pointer;
+}
+.delete-btn {
+  background-color: #F47C79;
+  transition: all 1s;
+}
+.delete-btn:hover {
+  background-color: #B97877;
+}
+
+@media (max-width: 500px) {
+  .badge {
+    padding: 5px;
+  }
+}
