@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { TodoService } from './services/todo.service';
 import { AppComponent } from './app.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
@@ -21,7 +22,7 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
     HttpModule,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

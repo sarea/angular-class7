@@ -4,7 +4,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'ngbd-modal-basic',
   templateUrl: 'delete-modal.component.html',
-  styleUrls: ['./delete-modal.component.css']
+  styleUrls: ['./delete-modal.component.scss']
 })
 export class DeleteModalComponent {
 
