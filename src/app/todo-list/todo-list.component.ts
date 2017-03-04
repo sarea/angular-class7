@@ -12,17 +12,14 @@ export class TodoListComponent implements OnInit {
 
 	constructor(private todoService:TodoService) { }
 
-	todoList:any[];
-	//content:any;
-	//editOne:any;
+	public todoList:any[];
 	newTodo:Todo;
-
 	validation:any = {
 		value: false,
 		message: 'You have to do something!!'
-	};
+	}
 
-	addTodo(content) {
+	addTodo(content):void {
 		if(content.value == ''){
 			this.validation.value = true;
 			setTimeout(()=> {
@@ -38,13 +35,12 @@ export class TodoListComponent implements OnInit {
 		});
 	}
 	editTodo(index:number, editOne:any):void {
-		console.log(editOne.value)
 		const id:string = this.todoList[index]._id;
 		if(editOne.value !== ''){
 			this.todoService.updateTodo(id, {'todo.content': editOne.value})
 			.then(() => {
 				this.ngOnInit();
-			})
+			});
 		}
 	}
 	doneTodo(index:number):void {
@@ -57,14 +53,14 @@ export class TodoListComponent implements OnInit {
 	changePriority(k:number,i:number) {
 		const currentId:string = this.todoList[i]._id;
 		const newId:string = this.todoList[k]._id;
-		const temp = this.todoList[i]
+		const temp = this.todoList[i];
 		this.todoService.updateTodo(currentId, {'todo.priority': this.todoList[k].todo.priority});
 		this.todoService.updateTodo(newId, {'todo.priority': temp.todo.priority})
 		.then(() => {
 			this.ngOnInit();
-		})
+		});
 	}
-	deleteTodo(index:number) {
+	deleteTodo(index:number):void {
 		const id:string = this.todoList[index]._id
 		this.todoService
 			.deleteTodo(id)
@@ -76,7 +72,7 @@ export class TodoListComponent implements OnInit {
 		this.todoService.getTodos()
 		.then(todos => {
 			this.todoList = todos;
-			this.todoList.sort((a,b) => {
+			this.todoList.sort((a, b) => {
 				return (a.todo.priority > b.todo.priority) ? 1 : ((b.todo.priority > a.todo.priority) ? -1 : 0);
 			});
 			this.newTodo = {
@@ -90,25 +86,4 @@ export class TodoListComponent implements OnInit {
 	ngOnInit() {
 		this.getAllTodos();
 	}
-
 }
-
-
-
-//////////////////////////////////////////////////////////////
-// import { UsersService } from '../services/users.service';
-// import { User } from '../services/user';
-//////////////////////////////////////////////////////////////
-// getAllUsers():void{
-// 	this.usersService.getUsers()
-// 	.then(users => {
-// 		this.user = users;
-// 		console.log(users)
-// 	});
-// }
-// createUsers() {
-// 	console.log("sarea")
-// 	this.usersService.createUsers(this.newUser)
-// 	.then();
-// }
-//////////////////////////////////////////////////////////////
